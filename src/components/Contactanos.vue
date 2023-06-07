@@ -1,18 +1,47 @@
+<script>
+import axios from 'axios';
+  export default {
+    methods:{
+        showError(){
+            console.log('error');
+        },
+        formSubmit(req){
+
+            let name = req.target[0].value, email = req.target[1].value, content = req.target[2].value;
+
+           
+        
+                axios.post('https://emblematicabackok.uc.r.appspot.com/', {
+                    name: name,
+                    email: email,
+                    content: content
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            
+        }
+    }
+}
+</script>
 <template>
     <section id="Contactanos">
         <h2>Contactate con nosotros</h2>
         <div>
-            <a href="#">Escribinos un whatsapp</a>
+            <a href="#"><div><div><span></span><span>Escribinos un whatsapp</span></div></div></a>
             <ul>
-                <li><a href="#"><div><span></span><span>Instagram</span></div></a></li>
-                <li><a href="#">LinkedIn</a></li>
+                <li><a href="#"><div><div><span></span><span>Instagram</span></div></div></a></li>
+                <li><a href="#"><div><div><span></span><span>LinkedIn</span></div></div></a></li>
             </ul>
             <ul>
                 <li><span>Número de teléfono: </span><span>+54 9 11 6666-6666</span></li>
                 <li><span>Correo electronico: </span><span>consultas@emblematica.ar</span></li>
             </ul>
         </div>
-        <form action="#" method="POST">
+        <form action="#" method="POST" @submit.prevent="formSubmit">
             <input type="text" name="nombre">
             <input type="text" name="email">
             <textarea name="comentario" id="" cols="30" rows="10"></textarea>
@@ -38,13 +67,51 @@
     #Contactanos >div >a{
         display: block;
         width:100%;
-        background-color: greenyellow;
-        border: 1px solid greenyellow;
+        background-color: #25d366;
+        border: 1px solid #25d366;
         border-radius: 500px;
         text-align: center;
         text-decoration: none;
         color: black;
         height: 40px;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+
+    }
+
+    #Contactanos >div >a >div{
+        display: flex;
+        align-self: center;
+        justify-self: center;
+        width: fit-content;
+        height: fit-content;
+    }
+    #Contactanos >div >a >div >div{
+        display: grid;
+        grid-template-columns: 25px 1fr;
+        grid-template-rows: 1fr;
+        grid-gap: 5px;
+    }
+
+    #Contactanos >div >a >div >div >span:first-of-type{
+        display: block;
+        width: 25px;
+        height: 25px;
+        background-image: url('../assets/img/whatsapp_logo.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        align-self: center;
+        justify-self: center;
+    }
+
+    #Contactanos >div >a >div >div >span:last-of-type{
+        display: flex;
+        align-self: center;
+        justify-self: center;
+        color: white;
     }
 
     #Contactanos >div >ul:first-of-type{
@@ -79,13 +146,13 @@
     }
 
     #Contactanos >div >ul:first-of-type >li >a{
-        background-color: brown;
         width: 100%;
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
         text-decoration: none;
-        color: black;
+        color: white;
+        font-weight: 700;
     }
 
     #Contactanos >div >ul:first-of-type >li >a >div{
@@ -94,6 +161,35 @@
         display: flex;
         align-self: center;
         justify-self: center;
+    }
+    #Contactanos >div >ul:first-of-type >li >a >div >div{
+        display: grid;
+        grid-template-columns: 20px 1fr;
+        grid-template-rows: 1fr;
+        grid-gap: 5px;
+    }
+
+    #Contactanos >div >ul:first-of-type >li >a >div >div >span:first-of-type{
+        background-color: transparent;
+        width: 20px;
+        height: 20px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    #Contactanos >div >ul:first-of-type >li >a >div >div >span:last-of-type{
+        display: flex;
+        align-self: center;
+        justify-self: center;
+    }
+
+    #Contactanos >div >ul:first-of-type >li:first-of-type >a >div >div >span:first-of-type{
+        background-image: url('../assets/img/instagram_logo.png');
+    }
+
+    #Contactanos >div >ul:first-of-type >li:last-of-type >a >div >div >span:first-of-type{
+        background-image: url('../assets/img/linkedIn_logo.png');
     }
 
     #Contactanos >div >ul:last-of-type{
